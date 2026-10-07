@@ -1,0 +1,198 @@
+{
+  "audit_metadata": {
+    "total_ptps": 3696,
+    "right_censored_dropped": 1,
+    "valid_ptps": 3695,
+    "train_ptps": 2571,
+    "val_ptps": 561,
+    "test_ptps": 563,
+    "overall_kept_rate_pct": 27.55,
+    "overall_broken_rate_pct": 72.45
+  },
+  "lead_time_distribution_window_comparison": [
+    {
+      "Lead Bin": "0-2d",
+      "Count": 1076,
+      "Std Kept": 200,
+      "Std Rate (%)": 18.59,
+      "Fixed Kept": 200,
+      "Fixed Rate (%)": 18.59,
+      "Window Delta (%)": 0.0
+    },
+    {
+      "Lead Bin": "3-4d",
+      "Count": 386,
+      "Std Kept": 117,
+      "Std Rate (%)": 30.31,
+      "Fixed Kept": 73,
+      "Fixed Rate (%)": 18.91,
+      "Window Delta (%)": 11.4
+    },
+    {
+      "Lead Bin": "5-7d",
+      "Count": 1213,
+      "Std Kept": 283,
+      "Std Rate (%)": 23.33,
+      "Fixed Kept": 194,
+      "Fixed Rate (%)": 15.99,
+      "Window Delta (%)": 7.34
+    },
+    {
+      "Lead Bin": "8-10d",
+      "Count": 414,
+      "Std Kept": 107,
+      "Std Rate (%)": 25.85,
+      "Fixed Kept": 65,
+      "Fixed Rate (%)": 15.7,
+      "Window Delta (%)": 10.14
+    },
+    {
+      "Lead Bin": "11-15d",
+      "Count": 116,
+      "Std Kept": 59,
+      "Std Rate (%)": 50.86,
+      "Fixed Kept": 44,
+      "Fixed Rate (%)": 37.93,
+      "Window Delta (%)": 12.93
+    },
+    {
+      "Lead Bin": "16-30d",
+      "Count": 490,
+      "Std Kept": 252,
+      "Std Rate (%)": 51.43,
+      "Fixed Kept": 141,
+      "Fixed Rate (%)": 28.78,
+      "Window Delta (%)": 22.65
+    }
+  ],
+  "ablation_study": [
+    {
+      "Step": "1. Core Financials (5)",
+      "Feats": 5,
+      "Test AUC": 0.6104,
+      "95% CI": "[0.558, 0.663]",
+      "\u0394 Prev": 0.0,
+      "\u0394 Prev 95% CI": "[0.000, 0.000]",
+      "\u0394 Base": 0.0,
+      "\u0394 Base 95% CI": "[0.000, 0.000]"
+    },
+    {
+      "Step": "2. + PTP Terms & Salary (9)",
+      "Feats": 9,
+      "Test AUC": 0.681,
+      "95% CI": "[0.626, 0.730]",
+      "\u0394 Prev": 0.0706,
+      "\u0394 Prev 95% CI": "[+0.021, +0.120]",
+      "\u0394 Base": 0.0706,
+      "\u0394 Base 95% CI": "[+0.021, +0.120]"
+    },
+    {
+      "Step": "3. + Pre-Capture Payments (14)",
+      "Feats": 14,
+      "Test AUC": 0.6802,
+      "95% CI": "[0.627, 0.728]",
+      "\u0394 Prev": -0.0008,
+      "\u0394 Prev 95% CI": "[-0.006, +0.005]",
+      "\u0394 Base": 0.0698,
+      "\u0394 Base 95% CI": "[+0.021, +0.118]"
+    },
+    {
+      "Step": "4. + Speech Kinetics & Ghost (20)",
+      "Feats": 20,
+      "Test AUC": 0.6982,
+      "95% CI": "[0.650, 0.744]",
+      "\u0394 Prev": 0.018,
+      "\u0394 Prev 95% CI": "[-0.009, +0.045]",
+      "\u0394 Base": 0.0878,
+      "\u0394 Base 95% CI": "[+0.036, +0.141]"
+    },
+    {
+      "Step": "5. + Indic NLP & Char-TFIDF (26)",
+      "Feats": 26,
+      "Test AUC": 0.7635,
+      "95% CI": "[0.716, 0.811]",
+      "\u0394 Prev": 0.0654,
+      "\u0394 Prev 95% CI": "[+0.036, +0.094]",
+      "\u0394 Base": 0.1532,
+      "\u0394 Base 95% CI": "[+0.094, +0.211]"
+    }
+  ],
+  "models_cv_and_test": [
+    {
+      "Model": "CatBoost (depth=4, lr=0.03)",
+      "CV AUC": "0.7726 \u00b1 0.010",
+      "Test AUC": 0.7825,
+      "PR-AUC": 0.597,
+      "Brier": 0.1535
+    },
+    {
+      "Model": "LogReg + CatBoost Blend",
+      "CV AUC": "0.7728 \u00b1 0.007",
+      "Test AUC": 0.7747,
+      "PR-AUC": 0.5883,
+      "Brier": 0.1558
+    },
+    {
+      "Model": "Platt-Calibrated Blend (Final)",
+      "CV AUC": "0.7728 \u00b1 0.007",
+      "Test AUC": 0.7747,
+      "PR-AUC": 0.5883,
+      "Brier": 0.1552
+    },
+    {
+      "Model": "Logistic Regression (L2)",
+      "CV AUC": "0.7688 \u00b1 0.006",
+      "Test AUC": 0.7639,
+      "PR-AUC": 0.5738,
+      "Brier": 0.1597
+    },
+    {
+      "Model": "Decision Tree (Shallow, d=4)",
+      "CV AUC": "0.7275 \u00b1 0.013",
+      "Test AUC": 0.7733,
+      "PR-AUC": 0.5933,
+      "Brier": 0.1546
+    }
+  ],
+  "operational_payoff_scenarios": [
+    {
+      "Regime": "Conservative",
+      "Cost a": "\u20b9300",
+      "Benefit b": "\u20b9200",
+      "Bayes t*": 0.6,
+      "Val t": 0.66,
+      "TP Catch": 350,
+      "FP Touch": 64,
+      "Test Net (\u20b9)": "\u20b950,800",
+      "Lift vs Esc-All": "+\u20b916,200 [+10200, +21905]"
+    },
+    {
+      "Regime": "Balanced (Primary)",
+      "Cost a": "\u20b9250",
+      "Benefit b": "\u20b9200",
+      "Bayes t*": 0.56,
+      "Val t": 0.57,
+      "TP Catch": 368,
+      "FP Touch": 80,
+      "Test Net (\u20b9)": "\u20b953,600",
+      "Lift vs Esc-All": "+\u20b911,200 [+6549, +15552]"
+    },
+    {
+      "Regime": "Aggressive Recovery",
+      "Cost a": "\u20b9200",
+      "Benefit b": "\u20b9250",
+      "Bayes t*": 0.44,
+      "Val t": 0.57,
+      "TP Catch": 368,
+      "FP Touch": 80,
+      "Test Net (\u20b9)": "\u20b976,000",
+      "Lift vs Esc-All": "+\u20b95,450 [+1150, +9650]"
+    }
+  ],
+  "measured_latency_ms": {
+    "catboost_model_only_ms": 0.696,
+    "logistic_regression_model_only_ms": 0.114,
+    "end_to_end_extraction_and_inference_ms": 2.092,
+    "sla_telephony_assumption_ms": 5.0
+  }
+}
